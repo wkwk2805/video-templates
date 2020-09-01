@@ -1,0 +1,17 @@
+{
+  "name": "video-template",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1",
+    "next": "^9.5.2",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  },
+  "scripts": {
+    "dev": "next",
+    "start": "next start",
+    "build": "next build"
+  }
+}
