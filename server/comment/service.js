@@ -1,8 +1,14 @@
 const commentService = (props) => {
   return {
-    insert: () => {},
-    delete: () => {},
-    update: () => {},
+    insert: () => {
+      console.log("insert comment");
+    },
+    delete: () => {
+      console.log("delete comment");
+    },
+    update: () => {
+      console.log("update comment");
+    },
   };
 };
 

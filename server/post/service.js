@@ -1,8 +1,14 @@
 const postService = (props) => {
   return {
-    insert: () => {},
-    delete: () => {},
-    update: () => {},
+    insert: () => {
+      console.log("insert post");
+    },
+    delete: () => {
+      console.log("delete post");
+    },
+    update: () => {
+      console.log("update post");
+    },
   };
 };
 

@@ -1,8 +1,14 @@
 const likeService = (props) => {
   return {
-    insert: () => {},
-    delete: () => {},
-    update: () => {},
+    insert: () => {
+      console.log("insert like");
+    },
+    delete: () => {
+      console.log("delete like");
+    },
+    update: () => {
+      console.log("update like");
+    },
   };
 };
 
