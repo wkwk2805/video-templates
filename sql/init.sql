@@ -71,3 +71,18 @@ CREATE TABLE public.vt_comment (
 	CONSTRAINT vt_comment_fk FOREIGN KEY (member_email) REFERENCES vt_member(email),
 	CONSTRAINT vt_comment_fk_1 FOREIGN KEY (post_uuid) REFERENCES vt_post(post_uuid)
 );
+
+-- Drop table
+
+-- DROP TABLE public.vt_like;
+
+CREATE TABLE public.vt_like (
+	post_uuid uuid NULL,
+	like_uuid uuid NOT NULL,
+	member_email varchar NULL,
+	comment_uuid uuid NULL,
+	CONSTRAINT vt_like_pk PRIMARY KEY (like_uuid),
+	CONSTRAINT vt_like_fk FOREIGN KEY (post_uuid) REFERENCES vt_post(post_uuid),
+	CONSTRAINT vt_like_fk_1 FOREIGN KEY (member_email) REFERENCES vt_member(email),
+	CONSTRAINT vt_like_fk_2 FOREIGN KEY (comment_uuid) REFERENCES vt_comment(comment_uuid)
+);
