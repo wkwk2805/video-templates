@@ -3,11 +3,11 @@ const app = express();
 const bodyParser = require("body-parser");
 const PORT = 3005;
 
-const user = require("./user");
-const post = require("./post");
-const file = require("./file");
-const like = require("./like");
-const comment = require("./comment");
+const user = require("./router/user");
+const post = require("./router/post");
+const file = require("./router/file");
+const like = require("./router/like");
+const comment = require("./router/comment");
 
 app.use(bodyParser.urlencoded({ extended: false }));
 

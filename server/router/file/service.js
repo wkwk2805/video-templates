@@ -1,4 +1,4 @@
-const fileService = (props) => {
+const fileService = (database) => {
   return {
     insert: () => {
       console.log("insert file");

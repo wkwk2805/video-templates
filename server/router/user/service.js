@@ -1,4 +1,4 @@
-const userService = (props) => {
+const userService = (database) => {
   return {
     register: () => {
       console.log("register user");

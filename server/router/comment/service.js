@@ -1,4 +1,4 @@
-const commentService = (props) => {
+const commentService = (database) => {
   return {
     insert: () => {
       console.log("insert comment");

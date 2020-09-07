@@ -1,4 +1,4 @@
-const likeService = (props) => {
+const likeService = (database) => {
   return {
     insert: () => {
       console.log("insert like");

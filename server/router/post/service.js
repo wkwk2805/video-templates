@@ -1,4 +1,4 @@
-const postService = (props) => {
+const postService = (database) => {
   return {
     insert: () => {
       console.log("insert post");
