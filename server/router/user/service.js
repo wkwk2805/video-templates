@@ -2,22 +2,21 @@ const sql = require("./query");
 
 const userService = (database) => {
   return {
-    register: async () => {
+    register: async (req) => {
       console.log("register user");
-      const result = await database.query(
-        sql.insertUser("wkwk2805@gmail.com", "1234", "01051197633")
-      );
+      const { id, password, phone } = req.body;
+      const result = await database.query(sql.insertUser(id, password, phone));
       console.log(result.row);
     },
-    delete: async () => {
+    delete: async (req) => {
       console.log("delete user");
-      await database.query(sql.deleteUser("wkwk2805@gmail.com"));
+      const { id } = req.body;
+      await database.query(sql.deleteUser(id));
     },
-    update: async () => {
+    update: async (req) => {
       console.log("update user");
-      await database.query(
-        sql.updateUser("wkwk2805@gmail.com", "1234567890", "01051197633")
-      );
+      const { id, password, phone } = req.body;
+      await database.query(sql.updateUser(id, password, phone));
     },
     logout: async () => {
       console.log("logout user");

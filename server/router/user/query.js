@@ -1,6 +1,5 @@
 // { id:query }
 const query = {
-  getUser: `SELECT * FROM VT_USER`,
   insertUser: (email, password, phone) => `
     INSERT INTO VT_USER (
         email

@@ -1,6 +1,8 @@
 // { id:query }
 const query = {
-  getUser: `SELECT * FROM VT_USER`,
+  insert: () => ``,
+  update: () => ``,
+  delete: () => ``,
 };
 
 module.exports = query;
