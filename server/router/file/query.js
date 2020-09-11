@@ -18,7 +18,7 @@ const query = {
     ,'${postUuid}'
     ,0
   )`,
-  update: (fileUuid, path, name, type, size, userUuid, postUuid) => `
+  update: (fileUuid, path, name, type, size) => `
   UPDATE vt_file SET
     update_date = now()
     ,file_path = '${path}'
