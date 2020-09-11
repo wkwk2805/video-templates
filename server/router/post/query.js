@@ -5,10 +5,12 @@ const query = {
       title
       ,content
       ,user_uuid
+      ,read_count
     ) VALUES (
       '${title}'
       ,'${content}'
       ,'${userUuid}'
+      ,0
     )`,
   update: (postUuid, title, content) => `
       UPDATE vt_post SET 
