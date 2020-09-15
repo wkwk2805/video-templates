@@ -23,7 +23,7 @@ const query = {
         update_date = now()
         ,out_yn = 'Y'
     WHERE 1=1
-    AND email = ${email}
+    AND email = '${email}'
     `,
 };
 

@@ -1,24 +1,26 @@
-const sql = require('./query');
+const sql = require("./query");
 
 const commentService = (database) => {
   return {
-    insert: () => {
+    insert: async (req) => {
       console.log("insert comment");
       const { comment, userUuid, postUuid } = req.body;
-      const result = await database.query(sql.insert(comment, userUuid, postUuid));
-      console.log(result.row);
+      const result = await database.query(
+        sql.insert(comment, userUuid, postUuid)
+      );
+      console.log(result);
     },
-    delete: () => {
+    delete: async (req) => {
       console.log("delete comment");
       const { commentUuid } = req.body;
       const result = await database.query(sql.delete(commentUuid));
-      console.log(result.row);
+      console.log(result);
     },
-    update: () => {
+    update: async (req) => {
       console.log("update comment");
       const { comment, commentUuid } = req.body;
       const result = await database.query(sql.update(commentUuid, comment));
-      console.log(result.row);
+      console.log(result);
     },
   };
 };
