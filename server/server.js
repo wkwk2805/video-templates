@@ -5,6 +5,7 @@ const passport = require("passport");
 const session = require("express-session");
 const LocalStrategy = require("passport-local").Strategy;
 const PORT = 3005;
+const database = require("./database/connect");
 
 app.use(
   session({ secret: "@#)#*&*@$*", resave: true, saveUninitialized: false })
@@ -15,19 +16,22 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 passport.use(
-  new LocalStrategy((username, password, done) => {
+  new LocalStrategy(async (username, password, done) => {
     console.log("LocalStrategy");
-    /* User.findOne({ username: username }, function(err, user) {
-    if (err) { return done(err); }
-    if (!user) {
-      return done(null, false, { message: 'Incorrect username.' });
+    try {
+      const result = await database.query(
+        `SELECT email, phone, user_uuid FROM vt_user WHERE email = $1 AND password = $2`,
+        [username, password]
+      );
+      const userInfo = result.rows[0];
+      if (userInfo) {
+        return done(null, userInfo);
+      } else {
+        return done(null, false, { message: "존재하지 않는 유저입니다." });
+      }
+    } catch (err) {
+      return done(err);
     }
-    if (!user.validPassword(password)) {
-      return done(null, false, { message: 'Incorrect password.' });
-    }
-    return done(null, user);
-  }); */
-    done(null, username);
   })
 );
 
@@ -36,19 +40,16 @@ passport.serializeUser((user, done) => {
   done(null, user);
 });
 
-passport.deserializeUser((id, done) => {
+passport.deserializeUser((user, done) => {
   console.log("deserialize");
-  /* User.findById(id, function(err, user) {
-    done(err, user);
-  }); */
-  done(null, id);
+  done(null, user);
 });
 
 app.post(
   "/login",
   passport.authenticate("local", {
-    successRedirect: "/success",
-    failureRedirect: "/failure",
+    successRedirect: "/user/login",
+    failureRedirect: "/user/logout",
   })
 );
 

@@ -19,4 +19,14 @@ router.delete("/", async (req, res) => {
   res.send(isResult);
 });
 
+router.get("/login", (req, res) => {
+  console.log(req.user);
+  res.send("Hello Login");
+});
+
+router.get("/logout", (req, res) => {
+  console.log(req.user);
+  res.send("Hello Logout");
+});
+
 module.exports = router;
