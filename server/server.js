@@ -7,6 +7,7 @@ const LocalStrategy = require("passport-local").Strategy;
 const PORT = 3005;
 const database = require("./database/connect");
 
+app.use("/uploads", express.static(__dirname + "/uploads"));
 app.use(
   session({ secret: "@#)#*&*@$*", resave: true, saveUninitialized: false })
 );

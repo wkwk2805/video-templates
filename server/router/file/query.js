@@ -34,6 +34,8 @@ const query = {
     ,download_count = download_count + 1
   WHERE file_uuid = '${fileUuid}'
   `,
+  getFile: (fileUuid) =>
+    `SELECT * FROM vt_file WHERE file_uuid = '${fileUuid}'`,
 };
 
 module.exports = query;
