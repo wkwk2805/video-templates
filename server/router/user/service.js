@@ -37,11 +37,14 @@ const userService = (database) => {
         return false;
       }
     },
-    logout: async () => {
-      console.log("logout user");
+    searchEmail: async (req) => {
+      const { name, phone } = req.body;
+      const email = await database.query(sql.searchEmail(name, phone));
+      return email;
     },
-    login: async () => {
-      console.log("login user");
+    updatePassword: async (req) => {
+      const { email, password } = req.body;
+      await database.query(sql.updatePassword(email, password));
     },
   };
 };

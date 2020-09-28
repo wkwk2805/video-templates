@@ -19,14 +19,26 @@ router.delete("/", async (req, res) => {
   res.send(isResult);
 });
 
-router.get("/login", (req, res) => {
+router.get("/success", (req, res) => {
   console.log(req.user);
-  res.send("Hello Login");
+  if (req.user) {
+    res.json({ ok: true, message: "로그인 성공" });
+  } else {
+    res.json({ ok: false, message: "로그인 실패" });
+  }
 });
 
-router.get("/logout", (req, res) => {
-  console.log(req.user);
-  res.send("Hello Logout");
+router.get("/failure", (req, res) => {
+  res.json({ ok: false, message: "로그인 실패" });
+});
+
+router.get("/search/email", async (req, res) => {
+  const email = await service.searchEmail(req);
+  res.json({ email: email });
+});
+
+router.get("/search/password", async (req, res) => {
+  await service.searchPassword(req);
 });
 
 module.exports = router;

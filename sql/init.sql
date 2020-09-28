@@ -21,6 +21,8 @@ CREATE TABLE public.vt_user (
 	out_yn varchar(1) NULL DEFAULT 'N'::character varying,
 	phone varchar NULL,
 	user_uuid uuid NOT NULL DEFAULT uuid_generate_v1(),
+	"name" varchar NULL,
+	nickname varchar NULL,
 	CONSTRAINT vt_user_pk PRIMARY KEY (user_uuid),
 	CONSTRAINT vt_user_un UNIQUE (email)
 );

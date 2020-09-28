@@ -16,23 +16,29 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 passport.use(
-  new LocalStrategy(async (username, password, done) => {
-    console.log("LocalStrategy");
-    try {
-      const result = await database.query(
-        `SELECT email, phone, user_uuid FROM vt_user WHERE email = $1 AND password = $2`,
-        [username, password]
-      );
-      const userInfo = result.rows[0];
-      if (userInfo) {
-        return done(null, userInfo);
-      } else {
-        return done(null, false, { message: "존재하지 않는 유저입니다." });
+  new LocalStrategy(
+    {
+      usernameField: "email",
+      passwordField: "password",
+    },
+    async (email, password, done) => {
+      console.log("LocalStrategy");
+      try {
+        const result = await database.query(
+          `SELECT email, phone, user_uuid FROM vt_user WHERE email = $1 AND password = $2`,
+          [email, password]
+        );
+        const userInfo = result.rows[0];
+        if (userInfo) {
+          return done(null, userInfo);
+        } else {
+          return done(null, false, { message: "존재하지 않는 유저입니다." });
+        }
+      } catch (e) {
+        return done(e);
       }
-    } catch (err) {
-      return done(err);
     }
-  })
+  )
 );
 
 passport.serializeUser((user, done) => {
@@ -48,8 +54,8 @@ passport.deserializeUser((user, done) => {
 app.post(
   "/login",
   passport.authenticate("local", {
-    successRedirect: "/user/login",
-    failureRedirect: "/user/logout",
+    successRedirect: "/user/success",
+    failureRedirect: "/user/failure",
   })
 );
 
